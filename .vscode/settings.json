@@ -9,5 +9,8 @@
   },
   "python.analysis.typeCheckingMode": "basic",
   "python.analysis.autoImportCompletions": true,
-  "ruff.lint.enable": true
+  "ruff.lint.enable": true,
+  "terminal.integrated.env.windows": {
+    "PYTHONIOENCODING": "utf-8"
+  }
 }
