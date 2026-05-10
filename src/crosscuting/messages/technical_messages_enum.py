@@ -346,6 +346,14 @@ class TechnicalMessagesEnum(Enum):
         "No se encontró EmpleadoIdentidad asociada al proveedor_id del token en BD"
     )
 
+    # ─── RULES ──────────────────────────────────────────────────────────────────
+    RULE_STRING_VALUE_IS_PRESENT_ARGUMENTOS_INVALIDOS = "StringValueIsPresentRule.execute requiere mínimo 3 argumentos: value, user_message_key, technical_message"
+    RULE_STRING_LENGTH_IS_VALID_ARGUMENTOS_INVALIDOS = "StringLengthIsValidRule.execute requiere mínimo 4 argumentos: value, min_length, max_length, user_message_key, technical_message"
+    RULE_STRING_FORMAT_IS_VALID_ARGUMENTOS_INVALIDOS = "StringFormatIsValidRule.execute requiere mínimo 4 argumentos: value, pattern, user_message_key, technical_message"
+    RULE_ID_IS_NOT_DEFAULT_ARGUMENTOS_INVALIDOS = "IdIsNotDefaultRule.execute requiere mínimo 3 argumentos: value, user_message_key, technical_message"
+    RULE_NUMERIC_RANGE_IS_VALID_ARGUMENTOS_INVALIDOS = "NumericRangeIsValidRule.execute requiere mínimo 5 argumentos: value, min_value, max_value, user_message_key, technical_message"
+    RULE_BOOLEAN_IS_VALID_ARGUMENTOS_INVALIDOS = "BooleanIsValidRule.execute requiere mínimo 3 argumentos: value, user_message_key, technical_message"
+
     # ─── INFRAESTRUCTURA ────────────────────────────────────────────────────
     CACHE_ERROR_CONEXION = (
         "Error al intentar conectar con el servidor de caché: {proveedor}"
