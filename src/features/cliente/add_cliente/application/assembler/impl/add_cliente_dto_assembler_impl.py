@@ -30,3 +30,13 @@ class AddClienteDTOAssemblerImpl:
             nombre_completo=safe_domain.nombre_completo,
             telefono=safe_domain.telefono,
         )
+
+    @staticmethod
+    def to_domain_list(dto_list: list[AddClienteDTO] | None) -> list[AddClienteDomain]:
+        safe_list = dto_list if dto_list is not None else []
+        return [AddClienteDTOAssemblerImpl.to_domain(dto) for dto in safe_list]
+
+    @staticmethod
+    def to_dto_list(domain_list: list[AddClienteDomain] | None) -> list[AddClienteDTO]:
+        safe_list = domain_list if domain_list is not None else []
+        return [AddClienteDTOAssemblerImpl.to_dto(domain) for domain in safe_list]

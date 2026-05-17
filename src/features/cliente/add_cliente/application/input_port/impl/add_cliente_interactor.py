@@ -16,6 +16,6 @@ class AddClienteInteractor:
     def __init__(self, use_case: AddClienteUseCase) -> None:
         self._use_case = use_case
 
-    def execute(self, data: AddClienteDTO) -> None:
+    async def execute(self, data: AddClienteDTO) -> None:
         domain = AddClienteDTOAssemblerImpl.to_domain(data)
-        self._use_case.execute(domain)
+        await self._use_case.execute(domain)
