@@ -51,7 +51,7 @@ CREATE TABLE empleado (
     nombre            VARCHAR(50) NOT NULL,
     primer_apellido   VARCHAR(50) NOT NULL,
     segundo_apellido  VARCHAR(50),
-    telefono          VARCHAR(10) NOT NULL,
+    telefono          VARCHAR(15) NOT NULL,
     CONSTRAINT uq_empleado_numero_documento UNIQUE (numero_documento),
     CONSTRAINT uq_empleado_telefono         UNIQUE (telefono)
 );
@@ -96,7 +96,7 @@ CREATE TABLE cliente (
     id               UUID        PRIMARY KEY DEFAULT uuid_generate_v4(),
     numero_documento VARCHAR(10) NOT NULL,
     nombre_completo  VARCHAR(50) NOT NULL,
-    telefono         VARCHAR(10) NOT NULL,
+    telefono         VARCHAR(15) NOT NULL,
     CONSTRAINT uq_cliente_numero_documento UNIQUE (numero_documento),
     CONSTRAINT uq_cliente_telefono         UNIQUE (telefono)
 );

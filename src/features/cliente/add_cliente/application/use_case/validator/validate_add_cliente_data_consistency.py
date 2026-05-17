@@ -63,7 +63,7 @@ class ValidateAddClienteDataConsistency:
         )
         StringFormatIsValidRule.execute(
             domain.nombre_completo,
-            r"^[A-Za-záéíóúÁÉÍÓÚñÑüÜ'\-\s]+$",
+            r"^[A-Za-záéíóúÁÉÍÓÚñÑüÜ0-9'\-\.\,\#\&\s]+$",
             "cliente.nombre_completo.formato.invalido",
             TechnicalMessagesEnum.CLIENTE_NOMBRE_COMPLETO_FORMATO_INVALIDO.value,
         )
@@ -77,14 +77,14 @@ class ValidateAddClienteDataConsistency:
         )
         StringLengthIsValidRule.execute(
             domain.telefono,
-            10,
-            10,
+            7,
+            15,
             "cliente.telefono.longitud.invalida",
             TechnicalMessagesEnum.CLIENTE_TELEFONO_LONGITUD_INVALIDA.value,
         )
         StringFormatIsValidRule.execute(
             domain.telefono,
-            r"^\d{10}$",
+            r"^\+?\d{7,15}$",
             "cliente.telefono.formato.invalido",
             TechnicalMessagesEnum.CLIENTE_TELEFONO_FORMATO_INVALIDO.value,
         )

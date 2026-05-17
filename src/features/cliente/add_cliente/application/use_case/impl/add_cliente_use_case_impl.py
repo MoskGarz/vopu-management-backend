@@ -18,32 +18,23 @@ class AddClienteUseCaseImpl:
     def __init__(self, cliente_repository: ClienteRepository) -> None:
         self._cliente_repository = cliente_repository
 
-    def execute(self, data: AddClienteDomain) -> None:
-        try:
-            ValidateAddClienteDataConsistency.validate(data)
-            self._validate_unique_documento(data)
-            self._validate_unique_telefono(data)
-            self._cliente_repository.save(data)
-        except VopuException:
-            raise
-        except Exception as e:
-            raise VopuException.create(
-                "infraestructura.error_inesperado",
-                TechnicalMessagesEnum.CACHE_ERROR_CONEXION.value.format(
-                    proveedor="PostgreSQL"
-                ),
-                e,
-            )
+    async def execute(self, data: AddClienteDomain) -> None:
+        ValidateAddClienteDataConsistency.validate(data)
+        await self._validate_unique_documento(data)
+        await self._validate_unique_telefono(data)
+        await self._cliente_repository.save(data)
 
-    def _validate_unique_documento(self, data: AddClienteDomain) -> None:
-        if self._cliente_repository.exists_by_numero_documento(data.numero_documento):
+    async def _validate_unique_documento(self, data: AddClienteDomain) -> None:
+        if await self._cliente_repository.exists_by_numero_documento(
+            data.numero_documento
+        ):
             raise VopuException.create(
                 "cliente.documento.duplicado",
                 TechnicalMessagesEnum.CLIENTE_DOCUMENTO_DUPLICADO.value,
             )
 
-    def _validate_unique_telefono(self, data: AddClienteDomain) -> None:
-        if self._cliente_repository.exists_by_telefono(data.telefono):
+    async def _validate_unique_telefono(self, data: AddClienteDomain) -> None:
+        if await self._cliente_repository.exists_by_telefono(data.telefono):
             raise VopuException.create(
                 "cliente.telefono.duplicado",
                 TechnicalMessagesEnum.CLIENTE_TELEFONO_DUPLICADO.value,

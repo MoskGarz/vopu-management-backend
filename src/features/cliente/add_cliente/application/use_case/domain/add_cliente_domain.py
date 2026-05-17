@@ -3,6 +3,7 @@ from uuid import UUID
 
 from src.crosscuting.domain import Domain
 from src.crosscuting.helpers.text_helper import TextHelper
+from src.crosscuting.helpers.uuid_helper import UUIDHelper
 
 
 @final
@@ -14,7 +15,7 @@ class AddClienteDomain(Domain):
         nombre_completo: str = "",
         telefono: str = "",
     ) -> None:
-        super().__init__(id)
+        super().__init__(id if id is not None else UUIDHelper.generate_new_uuid())
         self.numero_documento = numero_documento
         self.nombre_completo = nombre_completo
         self.telefono = telefono
